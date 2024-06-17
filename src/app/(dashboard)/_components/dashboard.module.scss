@@ -1,0 +1,32 @@
+@mixin flex-arrangement-col() {
+  @apply flex flex-col;
+}
+@mixin flex-arrangement-row() {
+  @apply flex flex-row;
+}
+
+.dashboardLayoutContainer {
+  @include flex-arrangement-col();
+  @apply bg-[#FBFBFB] font-WorkSans items-center w-screen h-screen relative;
+  .navWrap {
+    @apply w-full h-[100px] bg-background absolute top-0 left-0 z-10 flex flex-row items-center;
+    box-shadow: 3px 0px 20px 0px #0000000a;
+  }
+  .bodyWrap {
+    @include flex-arrangement-row();
+    @apply items-start w-full h-full;
+    .sideBarWrap {
+      @apply min-w-[283px] h-screen bg-background pt-[101px] z-[4] lg:flex hidden;
+      box-shadow: 0px 15px 20px 0px #0000000a;
+      .sideBarContainer {
+        @apply h-full w-full;
+      }
+    }
+    .childrenWrap {
+      @apply flex w-full h-screen text-wrap bg-[#FBFBFB] pt-[101px];
+      .childrenContainer {
+        @apply h-full w-full;
+      }
+    }
+  }
+}

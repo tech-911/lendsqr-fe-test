@@ -1,0 +1,30 @@
+@mixin flex-arrangement-col() {
+  @apply flex flex-col;
+}
+@mixin flex-arrangement-row() {
+  @apply flex flex-row;
+}
+
+.container {
+  @include flex-arrangement-row();
+  @apply items-center w-full h-full;
+  .sideView {
+    @apply w-1/2 h-full hidden lg:flex;
+  }
+  .signinForm {
+    @apply w-full lg:w-1/2 h-full bg-HeroBackground px-[32px] md:px-[150px] lg:px-[60px] xl:px-[80px];
+  }
+}
+
+.signinFormContainer {
+  @apply w-full h-full flex flex-col items-center justify-center;
+  .headerWrapper {
+    @apply flex flex-col items-start gap-[10px] mb-[60px] self-start;
+    .title {
+      @apply text-headerColor font-[700] leading-[54.64px] text-[40px];
+    }
+    .instruction {
+      @apply text-[#545F7D] font-[400] leading-[23.2px] text-[20px];
+    }
+  }
+}

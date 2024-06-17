@@ -1,0 +1,13 @@
+.miniCardContainer {
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  @apply bg-background border border-[#F2F4F7] w-[240px] h-[160px] rounded-[4px] pt-5 px-[30px] flex flex-col items-start gap-[14px];
+  .iconWrap {
+    @apply w-10 h-10 rounded-full flex flex-row items-center justify-center;
+  }
+  .heading {
+    @apply text-[#545F7D] text-[14px] leading-[16.42px] font-[500];
+  }
+  .value {
+    @apply text-headerColor text-[24px] leading-[28.15px] font-[600];
+  }
+}
