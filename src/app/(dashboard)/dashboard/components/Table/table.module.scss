@@ -1,0 +1,27 @@
+.tableScrollStyle {
+  @apply rounded-md relative w-full overflow-auto;
+  &::-webkit-scrollbar {
+    display: flex;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-primary/30; /* Adjust scrollbar thumb color */
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-primary/10; /* Adjust scrollbar track color */
+  }
+}
+
+.tableContainer {
+  @apply flex flex-col items-start gap-5 w-full;
+  .tablewrapper {
+    box-shadow: 3px 5px 20px 0px #0000000a;
+    @apply border border-[#F2F4F7] rounded-[4px] p-[30px] w-full bg-background;
+  }
+  .pagination {
+    @apply flex items-center justify-between w-full;
+  }
+}

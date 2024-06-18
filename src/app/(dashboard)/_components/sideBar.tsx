@@ -58,20 +58,20 @@ const SideBar = () => {
         </div>
       </div>
       <div className="w-full flex flex-col items-start gap-[30px] mb-[71px]">
-        {sidebarData.map(({ section, list }) => {
+        {sidebarData.map(({ section, list }, id) => {
           return (
             <div
-              key={section}
+              key={id}
               className="w-full flex flex-col items-start gap-[10px]"
             >
               <p className="text-[#545F7D] text-[12px] leading-[14.08px] pl-[30px] font-[500]">
                 {section}
               </p>
               <div className="flex flex-col items-start gap-[10px] w-full">
-                {list?.map(({ name, path, SVGIcon }) => {
+                {list?.map(({ name, path, SVGIcon }, id) => {
                   return (
                     <div
-                      key={name}
+                      key={`name${id}`}
                       className={`pl-[30px] h-[40px] w-full flex flex-row items-center gap-[10px] hover:bg-primary/10 group ${
                         pathname === path
                           ? "border-l-[3px] border-[#39CDCC] bg-primary/10"

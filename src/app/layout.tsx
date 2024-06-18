@@ -1,7 +1,7 @@
 "use client";
 
 // import type { Metadata } from "next";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Inter, Work_Sans } from "next/font/google";
 import "./globals.scss";
 import { Providers } from "./GlobalRedux/provider";
@@ -63,11 +63,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${avenirNext.variable} ${WorkSans.variable} h-screen antialiased overflow-hidden`}
+      className={`${avenirNext.variable} ${WorkSans.variable} h-screen w-screen antialiased`}
     >
-      <body
-        className={`${WorkSans.className}`}
-      >
+      <body className={`${WorkSans.className}`}>
         <Providers>
           <Suspense fallback={<Preloader />}>{children}</Suspense>
         </Providers>

@@ -55,9 +55,7 @@ export function SigninForm() {
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      password: "",
-    },
+    defaultValues: {},
   });
 
   const router = useRouter();

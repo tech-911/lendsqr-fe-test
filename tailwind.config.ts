@@ -17,6 +17,16 @@ const config = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "1xl": "1363px",
+      xxl: "1464px",
+      xl2: { min: "1400px", max: "1919px" }, // Custom media query
+      "2xl": "1536px",
+    },
     extend: {
       fontFamily: {
         avenirNext: "var(--font-avenir-next)",

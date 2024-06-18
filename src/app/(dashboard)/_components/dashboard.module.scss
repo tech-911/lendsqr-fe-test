@@ -23,9 +23,22 @@
       }
     }
     .childrenWrap {
-      @apply flex w-full h-screen text-wrap bg-[#FBFBFB] pt-[101px];
+      @apply flex flex-1 overflow-hidden h-screen text-wrap bg-[#FBFBFB] pt-[101px];
       .childrenContainer {
-        @apply h-full w-full;
+        @apply overflow-x-auto overflow-y-auto min-w-full;
+        &::-webkit-scrollbar {
+          display: flex;
+          width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          @apply bg-primary/30; /* Adjust scrollbar thumb color */
+          border-radius: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+          @apply bg-primary/10; /* Adjust scrollbar track color */
+        }
       }
     }
   }

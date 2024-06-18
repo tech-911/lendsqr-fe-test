@@ -1,10 +1,11 @@
 "use client";
 
+import { generateRandomUserData } from "@/utls/fx";
 import { http, HttpResponse } from "msw";
 
 //  response type alais
 
-type responseType = {
+type requestType = {
   id: string;
   email: string;
   password: string;
@@ -30,9 +31,31 @@ export const handlers = [
   // Intercept "GET https://example.com/user" requests...
   http.post("*/login", async ({ request }) => {
     // ...and respond to them using this JSON response.
-    const userInfo = (await request.json()) as responseType;
+    const userInfo = (await request.json()) as requestType;
     const token = generateToken(100);
     const responseBody = { ...userInfo, token };
     return HttpResponse.json(responseBody, { status: 201 });
+  }),
+  http.post("*/getUsers", async ({ request }) => {
+    // ...and respond to them using this JSON response.
+    const { dataNumber, token } = (await request.json()) as {
+      dataNumber: number;
+      token: string;
+    };
+    if (!token || token === "") {
+      return HttpResponse.json(
+        { message: "unauthorized access" },
+        { status: 401 }
+      );
+    }
+    const userList = generateRandomUserData(dataNumber);
+    if (userList.length === 0) {
+      return HttpResponse.json(
+        { message: "invalid data length" },
+        { status: 400 }
+      );
+    }
+
+    return HttpResponse.json({ data: userList }, { status: 201 });
   }),
 ];

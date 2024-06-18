@@ -12,16 +12,12 @@ export function MiniCard({
   id,
 }: miniCardType<SVGIconProps>) {
   return (
-    <div key={id} className={styles.miniCardContainer}>
+    <div className={styles.miniCardContainer}>
       <div style={{ backgroundColor: bgColor }} className={styles.iconWrap}>
         <SVGIcon />
       </div>
-      <p key={id} className={styles.heading}>
-        {heading}
-      </p>
-      <p key={id} className={styles.value}>
-        2,453
-      </p>
+      <p className={styles.heading}>{heading}</p>
+      <p className={styles.value}>2,453</p>
     </div>
   );
 }

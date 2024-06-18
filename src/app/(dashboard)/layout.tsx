@@ -47,9 +47,12 @@ export default function DashboardLayout({
           </ScrollArea>
         </div>
         <div className={styles.childrenWrap}>
-          <ScrollArea className={styles.childrenContainer}>
-            {children}
-          </ScrollArea>
+          {/* <ScrollArea
+            thumbColor="bg-primary/20"
+            className={styles.childrenContainer}
+          > */}
+          <div className={styles.childrenContainer}>{children}</div>
+          {/* </ScrollArea> */}
         </div>
       </div>
     </div>
