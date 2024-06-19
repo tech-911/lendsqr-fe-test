@@ -4,24 +4,33 @@ import { Payment } from "./columns";
 
 //--------------------get table data and save to local storage for global usage
 export async function getTableData() {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await fetch("/getUsers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token, dataNumber: 500 }), //sending token and number of data to get from endpoint
-    });
-    const result = (await response.json()) as any;
+  if (
+    typeof window !== "undefined" &&
+    typeof window.localStorage !== "undefined"
+  ) {
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await fetch("/getUsers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token, dataNumber: 500 }), //sending token and number of data to get from endpoint
+      });
+      const result = (await response.json()) as any;
 
-    if ((await response.status) === 201) {
-      // Save values to localStorage
-      localStorage.setItem("userData", JSON.stringify(result?.data));
+      if (
+        (await response.status) === 201 &&
+        typeof window !== "undefined" &&
+        typeof window.localStorage !== "undefined"
+      ) {
+        // Save values to localStorage
+        window.localStorage.setItem("userData", JSON.stringify(result?.data));
+      }
+      return result;
+    } catch (error) {
+      console.error("Error:", error as any);
     }
-    return result;
-  } catch (error) {
-    console.error("Error:", error);
   }
 }
 

@@ -25,12 +25,21 @@
 //   );
 // }
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 export default function Home() {
   const router = useRouter();
   const handleDashboard = () => {
     router.push(`/dashboard`);
   };
-  handleDashboard();
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.localStorage !== "undefined"
+    ) {
+      handleDashboard();
+    }
+  }, []);
 
   return (
     <main className="flex flex-col items-center w-full gap-4 pt-[20%]">

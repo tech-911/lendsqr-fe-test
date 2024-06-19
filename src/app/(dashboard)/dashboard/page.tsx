@@ -7,24 +7,32 @@ import { DataTable } from "./components/Table/table";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Payment, columns } from "./components/Table/columns";
 import { data, getTableData } from "./components/Table/data";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
   const [tableData, setData] = useState<Payment[]>([]);
+
   useEffect(() => {
-    getTableData()
-      .then((res) => {
-        if (res) {
-          setData(JSON.parse(localStorage.getItem("userData") as any));
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (
+      typeof window !== "undefined" &&
+      typeof window.localStorage !== "undefined"
+    ) {
+      getTableData()
+        .then((res) => {
+          if (res) {
+            setData(JSON.parse(window.localStorage.getItem("userData") as any));
+          }
+        })
+        .catch((error) => {
+          console.log("Table data fetching error: ", error as any);
+        });
+    }
   }, []);
 
+  const router = useRouter();
   // console.log("tableData: ", tableData);
   return (
-    <div className="px-[60px] py-[60px] w-full bg-[#FBFBFB] box-border">
+    <div className="sm:px-[60px] px-[20px] py-[60px] w-full bg-[#FBFBFB] box-border">
       <p className="text-headerColor text-[24px] leading-[28.15px] font-[500] mb-[40px]">
         Users
       </p>
@@ -44,7 +52,7 @@ export default function Dashboard() {
         </div>
         <ScrollBar thumbColor="bg-primary/20" orientation="horizontal" />
       </ScrollArea>
-      <DataTable data={tableData} columns={columns} />
+      <DataTable data={tableData} columns={columns(router)} />
     </div>
   );
 }

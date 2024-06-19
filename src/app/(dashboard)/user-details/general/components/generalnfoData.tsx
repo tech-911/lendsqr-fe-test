@@ -1,3 +1,5 @@
+"use client";
+
 export type generalInfoDataType<T> = {
   heading: string;
   withBorder?: boolean;

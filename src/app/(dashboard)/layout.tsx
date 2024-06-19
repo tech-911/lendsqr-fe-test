@@ -1,7 +1,7 @@
 "use client";
 
 // import type { Metadata } from "next";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./_components/nav";
 import SideBar from "./_components/sideBar";
 import styles from "./_components/dashboard.module.scss";
@@ -17,21 +17,20 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let isAuth = false;
-  const router = useRouter();
+  let router = useRouter();
 
-  if (
-    typeof window !== "undefined" &&
-    typeof window.localStorage !== "undefined"
-  ) {
-    // LocalStorage is available, perform operations
-    // Read or write data using window.localStorage
-    isAuth = !!localStorage.getItem("token");
-  }
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.localStorage !== "undefined"
+    ) {
+      const hasToken = !!window.localStorage.getItem("token");
+      if (!hasToken) {
+        router.push("/signin");
+      }
+    }
+  }, [router]);
 
-  if (!isAuth && typeof window !== "undefined") {
-    router.push("/signin");
-  }
   return (
     <div className={styles.dashboardLayoutContainer}>
       <div className={styles.navWrap}>
@@ -47,12 +46,7 @@ export default function DashboardLayout({
           </ScrollArea>
         </div>
         <div className={styles.childrenWrap}>
-          {/* <ScrollArea
-            thumbColor="bg-primary/20"
-            className={styles.childrenContainer}
-          > */}
           <div className={styles.childrenContainer}>{children}</div>
-          {/* </ScrollArea> */}
         </div>
       </div>
     </div>

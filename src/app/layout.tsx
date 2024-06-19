@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Preloader from "./loading";
 import localFont from "next/font/local";
 
+
 const inter = Inter({
   display: "swap",
   subsets: ["latin"],

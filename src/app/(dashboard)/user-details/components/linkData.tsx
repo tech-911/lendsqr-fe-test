@@ -1,3 +1,5 @@
+"use client";
+
 export type detailNavLinkType = {
   id: number;
   heading: string;

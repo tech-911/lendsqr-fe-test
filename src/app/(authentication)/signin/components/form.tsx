@@ -62,55 +62,51 @@ export function SigninForm() {
 
   async function onSubmit(data: z.infer<typeof loginSchema>) {
     setIsLoading(true);
-    try {
-      const response = await fetch("/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const result = (await response.json()) as responseType;
 
-      if ((await response.status) === 201) {
-        toast({
-          variant: "default",
-          title: "Logging in...",
-          description: "Login Successful",
-          className:
-            "bg-[#BEF2B9] border-[#519E47] text-[#197624] text-[14px] font-[400]",
+    if (
+      typeof window !== "undefined" &&
+      typeof window.localStorage !== "undefined"
+    ) {
+      try {
+        const response = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         });
+        const result = (await response.json()) as responseType;
 
-        // Save values to localStorage
-        localStorage.setItem("email", result?.email as string);
-        localStorage.setItem("token", result?.token as string);
-        setIsLoading(false);
-        form.reset();
-        if (typeof window) {
-          router.push(`/dashboard`);
+        if ((await response.status) === 201) {
+          toast({
+            variant: "default",
+            title: "Logging in...",
+            description: "Login Successful",
+            className:
+              "bg-[#BEF2B9] border-[#519E47] text-[#197624] text-[14px] font-[400]",
+          });
+
+          // Save values to localStorage
+          window.localStorage.setItem("email", result?.email as string);
+          window.localStorage.setItem("token", result?.token as string);
+          setIsLoading(false);
+          form.reset();
+          if (typeof window) {
+            router.push(`/dashboard`);
+          }
+        } else {
+          setIsLoading(false);
         }
-      } else {
+      } catch (error) {
         setIsLoading(false);
+        console.error("Error:", error);
+        toast({
+          variant: "destructive",
+          title: `Error`,
+          description: `${error}`,
+        });
       }
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error:", error);
-      toast({
-        variant: "destructive",
-        title: `Error`,
-        description: `${error}`,
-      });
     }
-    // console.log("form input values: ", data);
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
-    // console.log("form input values: ", "clicked");
   }
 
   return (

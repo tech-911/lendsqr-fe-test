@@ -1,3 +1,5 @@
+"use client";
+
 type SVGIconProps = {
   isActive: boolean;
   activeColor?: string;

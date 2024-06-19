@@ -14,6 +14,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
@@ -26,7 +27,9 @@ export type Payment = {
   status: "inactive" | "pending" | "blacklisted" | "active";
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
+  router
+) => [
   {
     accessorKey: "organization",
     header: () => (
@@ -138,7 +141,6 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const id = row.original.id;
-      const router = useRouter();
       const email: string = row.getValue("email");
       const handleRoute = (id: string, email: string) => {
         router.push(`/user-details/general?id=${id}&email=${email}`);
