@@ -43,7 +43,6 @@ export function MiniCard({
         const userNumber = getValue?.filter((values) => {
           return values?.status === "active";
         });
-        console.log("userNumber: ", userNumber);
         return userNumber?.length;
       } else if (heading === "USERS WITH LOANS") {
         const userNumber = getValue?.filter((values) => {

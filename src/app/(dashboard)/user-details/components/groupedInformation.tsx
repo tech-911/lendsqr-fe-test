@@ -12,7 +12,7 @@ export default function GroupedComponent({
     list: { head1: string; head2: string }[];
   };
 }) {
-  console.log("data?.withBorder: ", data?.withBorder);
+  
   return (
     <div
       className={`w-full flex flex-col items-start gap-[30px]  pb-[28px] ${

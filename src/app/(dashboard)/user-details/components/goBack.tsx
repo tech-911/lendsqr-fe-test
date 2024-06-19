@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react";
 function Back() {
   const router = useRouter();
   const handleBack = () => {
-    router.back();
+    router.push("/dashboard");
   };
   return (
     <div
