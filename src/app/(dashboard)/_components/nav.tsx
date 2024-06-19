@@ -30,8 +30,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import SideBar from "./sideBar";
 
 const NavBar = () => {
-  const [position, setPosition] = React.useState("bottom");
-
   return (
     <div className="w-full h-full px-[30px] flex flex-row items-center justify-between">
       <div className="hidden flex-row items-center justify-between gap-4 w-1/2 lg:flex">
@@ -62,22 +60,7 @@ const NavBar = () => {
                 />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-20 py-20">
-              {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup
-                value={position}
-                onValueChange={setPosition}
-              >
-                <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="bottom">
-                  Bottom
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="right">
-                  Right
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup> */}
-            </DropdownMenuContent>
+            <DropdownMenuContent className="w-20 py-20"></DropdownMenuContent>
           </DropdownMenu>
         </div>
       </div>
@@ -93,9 +76,6 @@ const NavBar = () => {
         </SheetTrigger>
         <SheetContent className="pl-0 pr-0" side="left">
           <SheetHeader className="pl-[30px] pb-5">
-            {/* <SheetTitle className="text-[#213F7D] text-[24px] leading-[28.15px] font-[500] pl-[30px]">
-              Dashboard
-            </SheetTitle> */}
             <Image src={Lendsqr} alt={"Lendsqr"} />
           </SheetHeader>
           <ScrollArea thumbColor="transparent" className="h-full w-full">

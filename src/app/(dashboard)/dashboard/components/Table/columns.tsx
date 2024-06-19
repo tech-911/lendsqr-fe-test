@@ -15,8 +15,8 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 // This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Payment = {
   id: string;
   organization: string;

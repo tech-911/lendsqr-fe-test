@@ -114,7 +114,6 @@ export function SigninForm() {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={styles.signinFormContainer}
-        // className="w-[90%] md:w-[40%] rounded-[10px] bg-[#fff] border border-[#D0D5DD] flex flex-col items-center px-7 py-8"
       >
         <div className={styles.headerWrapper}>
           <h1 className={styles.title}>Welcome!</h1>
@@ -126,9 +125,6 @@ export function SigninForm() {
             name="email"
             render={({ field }) => (
               <FormItem className="w-full">
-                {/* <FormLabel className="text-[#101928] font-[500] leading-[20.2px] text-[14px]">
-                  EMAIL ADDRESS
-                </FormLabel> */}
                 <FormControl>
                   <Input
                     className="min-h-[50px] rounded-[6px]"
@@ -145,9 +141,6 @@ export function SigninForm() {
             name="password"
             render={({ field }) => (
               <FormItem className="w-full">
-                {/* <FormLabel className="text-[#101928] font-[500] leading-[20.2px] text-[14px]">
-                  CREATE PASSWORD
-                </FormLabel> */}
                 <FormControl>
                   <Input
                     type="password"

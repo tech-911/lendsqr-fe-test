@@ -1,17 +1,14 @@
 "use client";
 
-// import type { Metadata } from "next";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect } from "react";
 import NavBar from "./_components/nav";
 import SideBar from "./_components/sideBar";
 import styles from "./_components/dashboard.module.scss";
 import { useRouter } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-// export const metadata: Metadata = {
-//   title: "Users Dashboard",
-//   description: "Users Dashboard",
-// };
+
 export default function DashboardLayout({
   children,
 }: Readonly<{

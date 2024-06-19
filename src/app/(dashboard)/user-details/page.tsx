@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Icon } from "@iconify/react";
 
 export default function UserDetail() {
   const router = useRouter();

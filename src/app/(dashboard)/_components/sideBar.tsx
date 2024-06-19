@@ -17,10 +17,20 @@ import Home from "@/assets/img/home.png";
 import Logout from "@/assets/img/sign-out.png";
 import { Icon } from "@iconify/react";
 import { sidebarData } from "./sideBarData";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const SideBar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const handleLogout = () => {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.localStorage !== "undefined"
+    ) {
+      window.localStorage.clear();
+      router.push("/signin");
+    }
+  };
   return (
     <div className="w-full py-[39px]">
       <div className="w-full ml-[30px] mb-[41px] flex flex-col items-start gap-[52px]">
@@ -35,22 +45,7 @@ const SideBar = () => {
               />
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-20 py-10">
-            {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup
-                value={position}
-                onValueChange={setPosition}
-              >
-                <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="bottom">
-                  Bottom
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="right">
-                  Right
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup> */}
-          </DropdownMenuContent>
+          <DropdownMenuContent className="w-20 py-10"></DropdownMenuContent>
         </DropdownMenu>
         <div className="flex flex-row items-center gap-[10px] text-[#7A8CB1] text-[16px] leading-[18.75px] font-[400]">
           <Image className="" src={Home} alt={"Home"} />
@@ -99,7 +94,10 @@ const SideBar = () => {
         })}
       </div>
       <div className="w-full  border-t border-t-headerColor/15 pt-[24px] flex flex-col items-start gap-[29px] mb-[50px]">
-        <div className="cursor-pointer pl-[30px] flex flex-row items-center gap-[10px] text-[#7A8CB1] text-[16px] leading-[18.75px] font-[400] hover:text-[#213F7D] hover:bg-primary/10 h-[40px] w-full">
+        <div
+          onClick={() => handleLogout()}
+          className="cursor-pointer pl-[30px] flex flex-row items-center gap-[10px] text-[#7A8CB1] text-[16px] leading-[18.75px] font-[400] hover:text-[#213F7D] hover:bg-primary/10 h-[40px] w-full"
+        >
           <Image className="" src={Logout} alt={"Logout"} />
           Logout
         </div>

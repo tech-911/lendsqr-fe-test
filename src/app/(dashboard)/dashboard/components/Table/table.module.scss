@@ -22,6 +22,6 @@
     @apply border border-[#F2F4F7] rounded-[4px] p-[30px] w-full bg-background;
   }
   .pagination {
-    @apply flex items-center justify-between w-full;
+    @apply flex items-center sm:justify-between justify-center w-full flex-wrap sm:gap-5 gap-10;
   }
 }

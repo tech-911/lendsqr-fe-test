@@ -6,7 +6,7 @@ import { miniCardsData } from "./components/miniCardsData";
 import { DataTable } from "./components/Table/table";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Payment, columns } from "./components/Table/columns";
-import { data, getTableData } from "./components/Table/data";
+import { getTableData } from "./components/Table/data"; //-----------import mock data from MSW for 500 record
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
@@ -30,7 +30,6 @@ export default function Dashboard() {
   }, []);
 
   const router = useRouter();
-  // console.log("tableData: ", tableData);
   return (
     <div className="sm:px-[60px] px-[20px] py-[60px] w-full bg-[#FBFBFB] box-border">
       <p className="text-headerColor text-[24px] leading-[28.15px] font-[500] mb-[40px]">
