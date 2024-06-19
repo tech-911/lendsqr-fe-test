@@ -1,0 +1,25 @@
+.detailNavContainer {
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  @apply w-full flex flex-col items-start justify-between gap-[51px] px-[30px] pt-[30px] rounded-[4px] bg-white;
+  .linksScroll {
+    @apply w-full overflow-auto flex flex-row items-end gap-8;
+    &::-webkit-scrollbar {
+      display: flex;
+      height: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-primary/20; /* Adjust scrollbar thumb color */
+      border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-primary/10; /* Adjust scrollbar track color */
+    }
+  }
+}
+
+.detailChildrenWrapper {
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  @apply w-full p-[30px] mt-[30px] bg-background rounded;
+}

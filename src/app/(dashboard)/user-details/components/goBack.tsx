@@ -12,7 +12,7 @@ function Back() {
   return (
     <div
       onClick={handleBack}
-      className="flex flex-row items-center gap-[14.41px] text-[#545F7D] hover:text-[#545f7d8c] text-[16px] leading-[18.77px] font-[400] cursor-pointer group"
+      className="w-fit flex flex-row items-center gap-[14.41px] text-[#545F7D] hover:text-[#545f7d8c] text-[16px] leading-[18.77px] font-[400] cursor-pointer group"
     >
       <Icon
         icon="pajamas:arrow-left"
