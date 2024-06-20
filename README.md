@@ -8,9 +8,9 @@ The Lendsqr Dashboard is a front-end application designed as an assessment for t
 
 ## Features
 
--User Authentication: Secure login and logout functionalities.
--User Dashboard: tables and cards for an overall view of user set.
--User Detail Page: provides more detail of the user from the table.
+- User Authentication: Secure login and logout functionalities.
+- User Dashboard: tables and cards for an overall view of user set.
+- User Detail Page: provides more detail of the user from the table.
 
 ## Technologies Used
 
