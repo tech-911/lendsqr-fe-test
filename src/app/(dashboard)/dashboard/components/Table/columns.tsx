@@ -15,6 +15,9 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { FilterForm } from "./filterForm";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { capitalizeFirst } from "@/utls/fx";
 
 // This type is used to define the shape of our data.
 export type Payment = {
@@ -33,10 +36,25 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   {
     accessorKey: "organization",
     header: () => (
-      <div className="text-[#545F7D] text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-        ORGANIZATION
-        <Icon icon="ion:filter-sharp" className="text-[#545F7D] text-[20px]" />
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+            ORGANIZATION
+            <Icon
+              icon="ion:filter-sharp"
+              className="text-[#545F7D] text-[20px]"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+        >
+          <ScrollArea thumbColor="bg-primary/10" className="h-full">
+            <FilterForm />
+          </ScrollArea>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("organization")}</div>
@@ -45,10 +63,25 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   {
     accessorKey: "username",
     header: () => (
-      <div className="text-[#545F7D] text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-        USERNAME
-        <Icon icon="ion:filter-sharp" className="text-[#545F7D] text-[20px]" />
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+            USERNAME
+            <Icon
+              icon="ion:filter-sharp"
+              className="text-[#545F7D] text-[20px]"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+        >
+          <ScrollArea thumbColor="bg-primary/10" className="h-full">
+            <FilterForm />
+          </ScrollArea>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("username")}</div>
@@ -57,10 +90,25 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   {
     accessorKey: "email",
     header: () => (
-      <div className="text-[#545F7D] text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-        EMAIL
-        <Icon icon="ion:filter-sharp" className="text-[#545F7D] text-[20px]" />
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+            EMAIL
+            <Icon
+              icon="ion:filter-sharp"
+              className="text-[#545F7D] text-[20px]"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+        >
+          <ScrollArea thumbColor="bg-primary/10" className="h-full">
+            <FilterForm />
+          </ScrollArea>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("email")}</div>
@@ -69,10 +117,25 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   {
     accessorKey: "phoneNumber",
     header: () => (
-      <div className="text-[#545F7D] text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-        PHONE NUMBER
-        <Icon icon="ion:filter-sharp" className="text-[#545F7D] text-[20px]" />
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+            PHONE NUMBER
+            <Icon
+              icon="ion:filter-sharp"
+              className="text-[#545F7D] text-[20px]"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+        >
+          <ScrollArea thumbColor="bg-primary/10" className="h-full">
+            <FilterForm />
+          </ScrollArea>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("phoneNumber")}</div>
@@ -81,10 +144,25 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   {
     accessorKey: "dateJoined",
     header: () => (
-      <p className="text-[#545F7D] text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-        DATE JOINED
-        <Icon icon="ion:filter-sharp" className="text-[#545F7D] text-[20px]" />
-      </p>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+            DATE JOINED
+            <Icon
+              icon="ion:filter-sharp"
+              className="text-[#545F7D] text-[20px]"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+        >
+          <ScrollArea thumbColor="bg-primary/10" className="h-full">
+            <FilterForm />
+          </ScrollArea>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     cell: ({ row }) => (
       <p className="capitalize w-fit whitespace-nowrap">
@@ -95,10 +173,25 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   {
     accessorKey: "status",
     header: () => (
-      <p className="text-[#545F7D] text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-        STATUS
-        <Icon icon="ion:filter-sharp" className="text-[#545F7D] text-[20px]" />
-      </p>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+            STATUS
+            <Icon
+              icon="ion:filter-sharp"
+              className="text-[#545F7D] text-[20px]"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+        >
+          <ScrollArea thumbColor="bg-primary/10" className="h-full">
+            <FilterForm />
+          </ScrollArea>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     cell: ({ row }) => {
       const statusValue = row.getValue("status");
@@ -106,31 +199,31 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
         case "inactive":
           return (
             <p className="rounded-full h-[30px] w-fit flex flex-col items-center justify-center px-[18px] bg-[#F5F6F7] text-[#545F7D] text-[14px] leading-[16.42px] font-[400]">
-              {row.getValue("status")}
+              {capitalizeFirst(row.getValue("status"))}
             </p>
           );
         case "pending":
           return (
             <p className="rounded-full h-[30px] w-fit flex flex-col items-center justify-center px-[18px] bg-[#FDF8E6] text-[#EAB60E] text-[14px] leading-[16.42px] font-[400]">
-              {row.getValue("status")}
+              {capitalizeFirst(row.getValue("status"))}
             </p>
           );
         case "active":
           return (
             <p className="rounded-full h-[30px] w-fit flex flex-col items-center justify-center px-[18px] bg-[#F3FCF6] text-[#39CD62] text-[14px] leading-[16.42px] font-[400]">
-              {row.getValue("status")}
+              {capitalizeFirst(row.getValue("status"))}
             </p>
           );
         case "blacklisted":
           return (
             <p className="rounded-full h-[30px] w-fit flex flex-col items-center justify-center px-[18px] bg-[#FDE6EC] text-[#E4033B] text-[14px] leading-[16.42px] font-[400]">
-              {row.getValue("status")}
+              {capitalizeFirst(row.getValue("status"))}
             </p>
           );
         default:
           return (
             <p className="rounded-full h-[30px] w-fit flex flex-col items-center justify-center px-[18px] bg-[#FDF8E6] text-[#EAB60E] text-[14px] leading-[16.42px] font-[400]">
-              {row.getValue("status")}
+              {capitalizeFirst(row.getValue("status"))}
             </p>
           );
       }

@@ -64,3 +64,11 @@ export function generateRandomUserData(n: number) {
 
   return users;
 }
+
+//-------------------Capitalize first letter of string----------
+export function capitalizeFirst(str: string) {
+  if (!str) {
+    return str; // Return the string as is if it's empty
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
