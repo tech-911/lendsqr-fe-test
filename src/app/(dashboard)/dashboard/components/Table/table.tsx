@@ -72,57 +72,55 @@ export function DataTable({
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tablewrapper}>
-        <div className="rounded-md">
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup, id) => (
-                <TableRow key={id} className="border-none hover:bg-white">
-                  {headerGroup.headers.map((header, id) => {
-                    return (
-                      <TableHead key={id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </TableHead>
-                    );
-                  })}
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup, id) => (
+              <TableRow key={id} className="border-none hover:bg-white">
+                {headerGroup.headers.map((header, id) => {
+                  return (
+                    <TableHead key={id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row, id) => (
+                <TableRow
+                  className="border-[#213F7D1A]"
+                  key={id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell, id) => (
+                    <TableCell key={id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
                 </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row, id) => (
-                  <TableRow
-                    className="border-[#213F7D1A]"
-                    key={id}
-                    data-state={row.getIsSelected() && "selected"}
-                  >
-                    {row.getVisibleCells().map((cell, id) => (
-                      <TableCell key={id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </div>
       <div className={styles.pagination}>
         <div className="flex items-center space-x-2">
@@ -139,7 +137,7 @@ export function DataTable({
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 20, 50, 100, 150, 200, 250, 300, 400, 500].map(
+              {[5, 10, 20, 50, 100, 150, 200, 250, 300, 400, 500].map(
                 (pageSize, id) => (
                   <SelectItem key={id} value={`${pageSize}`}>
                     {pageSize}

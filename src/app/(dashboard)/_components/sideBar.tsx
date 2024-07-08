@@ -22,6 +22,9 @@ import { usePathname, useRouter } from "next/navigation";
 const SideBar = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const handleRouting = (link: any) => {
+    router.push(link);
+  };
   const handleLogout = () => {
     if (
       typeof window !== "undefined" &&
@@ -47,7 +50,7 @@ const SideBar = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-20 py-10"></DropdownMenuContent>
         </DropdownMenu>
-        <div className="flex flex-row items-center gap-[10px] text-[#7A8CB1] text-[16px] leading-[18.75px] font-[400]">
+        <div className="flex cursor-pointer flex-row items-center gap-[10px] text-[#7A8CB1] text-[16px] leading-[18.75px] font-[400]">
           <Image className="" src={Home} alt={"Home"} />
           Dashboard
         </div>
@@ -66,8 +69,9 @@ const SideBar = () => {
                 {list?.map(({ name, path, SVGIcon }, id) => {
                   return (
                     <div
+                      onClick={() => handleRouting(path)}
                       key={`name${id}`}
-                      className={`pl-[30px] h-[40px] w-full flex flex-row items-center gap-[10px] hover:bg-primary/10 group ${
+                      className={`pl-[30px] cursor-pointer h-[40px] w-full flex flex-row items-center gap-[10px] hover:bg-primary/10 group ${
                         pathname === path
                           ? "border-l-[3px] border-[#39CDCC] bg-primary/10"
                           : ""

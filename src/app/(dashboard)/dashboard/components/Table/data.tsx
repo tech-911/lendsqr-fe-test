@@ -8,6 +8,9 @@ export async function getTableData() {
     typeof window !== "undefined" &&
     typeof window.localStorage !== "undefined"
   ) {
+    if (window.localStorage.getItem("userData")) {
+      return [];
+    }
     try {
       const token = window.localStorage.getItem("token");
       const response = await fetch("/getUsers", {

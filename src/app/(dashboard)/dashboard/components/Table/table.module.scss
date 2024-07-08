@@ -19,7 +19,20 @@
   @apply flex flex-col items-start gap-5 w-full;
   .tablewrapper {
     box-shadow: 3px 5px 20px 0px #0000000a;
-    @apply border border-[#F2F4F7] rounded-[4px] p-[30px] w-full bg-background;
+    @apply border border-[#F2F4F7] rounded-[4px] p-[30px] w-full max-h-[100vh] overflow-y-auto bg-background;
+    &::-webkit-scrollbar {
+      display: flex;
+      max-width: 6px !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-primary/30; /* Adjust scrollbar thumb color */
+      border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-primary/10; /* Adjust scrollbar track color */
+    }
   }
   .pagination {
     @apply flex items-center sm:justify-between justify-center w-full flex-wrap sm:gap-5 gap-10;

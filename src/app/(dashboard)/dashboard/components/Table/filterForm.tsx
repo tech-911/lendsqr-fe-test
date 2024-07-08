@@ -5,6 +5,15 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -36,6 +45,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { Payment } from "./columns";
+import { Column, ColumnDef, Table } from "@tanstack/react-table";
 
 type responseType = {
   email: string;
@@ -44,24 +55,55 @@ type responseType = {
 };
 
 const FilterFormSchema = z.object({
-  email: z.string().email(),
-  organization: z.string(),
-  username: z.string(),
-  phone: z.string(),
-  status: z.string(),
-  date: z.date(),
+  email: z.string().email().optional(),
+  organization: z.string().optional(),
+  username: z.string().optional(),
+  phone: z.string().optional(),
+  status: z.string().optional(),
+  date: z.date().optional(),
 });
 
-export function FilterForm() {
+export function FilterForm({
+  column,
+  table,
+}: {
+  column: Column<Payment, unknown>;
+  table?: Table<Payment>;
+}) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const form = useForm<z.infer<typeof FilterFormSchema>>({
     resolver: zodResolver(FilterFormSchema),
     // defaultValues: {},
   });
 
+  const handleReset = (e: any) => {
+    e.preventDefault();
+    form?.reset();
+  };
+
   async function onSubmit(data: z.infer<typeof FilterFormSchema>) {
-    console.log("filter form data: ", data);
+    // console.log("data?.date:", data?.date?.toISOString());
+
+    if (data?.organization) {
+      table?.getColumn("organization")?.setFilterValue(data?.organization);
+    }
+    if (data?.username) {
+      table?.getColumn("username")?.setFilterValue(data?.username);
+    }
+    if (data?.date) {
+      table
+        ?.getColumn("dateJoined")
+        ?.setFilterValue("December 30, 2018 At 11:02 AM");
+    }
+    if (data?.phone) {
+      table?.getColumn("phoneNumber")?.setFilterValue(data?.phone);
+    }
+    if (data?.status) {
+      table?.getColumn("status")?.setFilterValue(data?.status);
+    }
+    if (data?.email) {
+      table?.getColumn("email")?.setFilterValue(data?.email);
+    }
   }
 
   return (
@@ -87,8 +129,9 @@ export function FilterForm() {
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="Lendsqr">Lendsqr</SelectItem>
-                    <SelectItem value="Irorun">Irorun</SelectItem>
-                    <SelectItem value="Leandstar">Leandstar</SelectItem>
+                    <SelectItem value="TechCorp">TechCorp</SelectItem>
+                    <SelectItem value="InnovateX">InnovateX</SelectItem>
+                    <SelectItem value="NextGen">NextGen</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -141,8 +184,8 @@ export function FilterForm() {
                 <FormLabel className="text-[#545F7D] text-[14px] leading-[16.42px] font-[500]">
                   Date
                 </FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
                     <FormControl>
                       <Button
                         variant={"outline"}
@@ -162,8 +205,8 @@ export function FilterForm() {
                         />
                       </Button>
                     </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-auto p-0" align="start">
                     <Calendar
                       mode="single"
                       selected={field.value}
@@ -173,8 +216,8 @@ export function FilterForm() {
                       //   }
                       initialFocus
                     />
-                  </PopoverContent>
-                </Popover>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <FormMessage />
               </FormItem>
             )}
@@ -229,9 +272,9 @@ export function FilterForm() {
         </div>
         <div className="flex flex-row items-center gap-[14px] justify-between">
           <Button
+            onClick={handleReset}
             disabled={isLoading}
             className="w-full h-[40px] rounded-[8px]"
-            type="submit"
             variant={"outline"}
           >
             Reset

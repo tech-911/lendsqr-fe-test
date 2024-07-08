@@ -35,34 +35,37 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
 ) => [
   {
     accessorKey: "organization",
-    header: () => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
-            ORGANIZATION
-            <Icon
-              icon="ion:filter-sharp"
-              className="text-[#545F7D] text-[20px]"
-            />
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
-        >
-          <ScrollArea thumbColor="bg-primary/10" className="h-full">
-            <FilterForm />
-          </ScrollArea>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
+    header: ({ table, column }) => {
+      // console.log("table checking......", table);
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
+              ORGANIZATION
+              <Icon
+                icon="ion:filter-sharp"
+                className="text-[#545F7D] text-[20px]"
+              />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="start"
+            className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
+          >
+            <ScrollArea thumbColor="bg-primary/10" className="h-full">
+              <FilterForm column={column} table={table} />
+            </ScrollArea>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("organization")}</div>
     ),
   },
   {
     accessorKey: "username",
-    header: () => (
+    header: ({ column, table }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
@@ -78,7 +81,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
           className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
         >
           <ScrollArea thumbColor="bg-primary/10" className="h-full">
-            <FilterForm />
+            <FilterForm column={column} table={table} />
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -89,7 +92,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   },
   {
     accessorKey: "email",
-    header: () => (
+    header: ({ column, table }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
@@ -105,7 +108,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
           className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
         >
           <ScrollArea thumbColor="bg-primary/10" className="h-full">
-            <FilterForm />
+            <FilterForm column={column} table={table} />
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -116,7 +119,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   },
   {
     accessorKey: "phoneNumber",
-    header: () => (
+    header: ({ column, table }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
@@ -132,7 +135,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
           className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
         >
           <ScrollArea thumbColor="bg-primary/10" className="h-full">
-            <FilterForm />
+            <FilterForm column={column} table={table} />
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -143,7 +146,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   },
   {
     accessorKey: "dateJoined",
-    header: () => (
+    header: ({ column, table }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
@@ -159,7 +162,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
           className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
         >
           <ScrollArea thumbColor="bg-primary/10" className="h-full">
-            <FilterForm />
+            <FilterForm column={column} table={table} />
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -172,7 +175,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
   },
   {
     accessorKey: "status",
-    header: () => (
+    header: ({ column, table }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="text-[#545F7D] cursor-pointer text-[12px] leading-[14.08px] font-[600] flex flex-row items-start gap-[10px] whitespace-nowrap">
@@ -188,7 +191,7 @@ export const columns: (args: AppRouterInstance) => ColumnDef<Payment>[] = (
           className="border min-w-[300px] h-[45vh] border-[#F2F4F7] rounded-[4px]"
         >
           <ScrollArea thumbColor="bg-primary/10" className="h-full">
-            <FilterForm />
+            <FilterForm column={column} table={table} />
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenu>

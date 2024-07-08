@@ -1,17 +1,67 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../components/userdetail.module.scss";
 import { Icon } from "@iconify/react";
 import { detailNavLinkData } from "./linkData";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { generateId } from "@/utls/fx";
+import { getTableData } from "@/(dashboard)/dashboard/components/Table/data";
+
+type getDataType = {
+  id: number;
+  organization: string;
+  username: string;
+  email: string;
+  phoneNumber: string;
+  dateJoined: string;
+  status: string;
+};
 
 export default function DetailNav() {
+  const searchParams = useSearchParams();
+  const email = searchParams?.get("email");
+  const id = searchParams?.get("id");
   const router = useRouter();
   const pathName = usePathname();
   const handleLinkRout = (route: string) => {
     router.push(route);
   };
+  const [randomId, setRandomId] = useState<string | undefined>("LSQFf587g90");
+  let [getValue, setGetValue] = useState<getDataType>();
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.localStorage !== "undefined"
+    ) {
+      getTableData()
+        .then((res) => {
+          if (res) {
+            const data = JSON.parse(
+              window.localStorage.getItem("userData") as any
+            ) as any[];
+            const filteredValueById = data?.filter((value) => {
+              return value?.id === Number(id);
+            });
+            setGetValue(filteredValueById[0] as getDataType);
+          }
+        })
+        .catch((error) => {
+          console.log("fetching error from detail page: ", error as any);
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (generateId() === undefined) {
+      setRandomId(undefined);
+    } else {
+      setRandomId(generateId());
+    }
+  }, []);
+
+
   return (
     <div className={styles.detailNavContainer}>
       <div className="flex flex-row items-center gap-[30px] flex-wrap">
@@ -24,10 +74,17 @@ export default function DetailNav() {
           </div>
           <div className="flex flex-col items-start gap-[8px]">
             <p className="text-headerColor sm:text-[22px] text-[16px] leading-[28.15px] font-[500]">
-              Grace Effiom
+              {getValue?.username}
             </p>
             <p className="text-[#545F7D] sm:text-[14px] text-[12px] leading-[16.42px] font-[400]">
-              LSQFf587g90
+              {generateId() === undefined || randomId === undefined ? (
+                <Icon
+                  icon="eos-icons:three-dots-loading"
+                  className="text-primary text-[40px]"
+                />
+              ) : (
+                randomId
+              )}
             </p>
           </div>
         </div>
