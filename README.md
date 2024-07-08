@@ -4,7 +4,10 @@
 
 Lendsqr Frontend Engineer Assessment
 
-  
+  ## Project Documentation
+  The full documentation of project can be gotten in the link: 
+  https://docs.google.com/document/d/1Dab8Bd6uDwdfKY0zZYl4mXl8sq9VJ-jTAmLSZOuISng/edit 
+  (submission form does not contain section for documentation link)
 
 ##  Introduction
 
